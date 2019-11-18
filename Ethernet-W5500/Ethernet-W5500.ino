@@ -3,7 +3,6 @@
  * 
  */
 
-#include <SPI.h>
 #include <Ethernet2.h>
   
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
@@ -13,12 +12,12 @@ byte ip[] = { 192, 168, 1, 50 };
 EthernetServer server(80);
   
 String readString;
-int Pin = 7;
-  bool test = false;
+int LED = 7;
+bool test = false;
   
 void setup(){
   
-  pinMode(Pin, OUTPUT);
+  pinMode(LED, OUTPUT);
   Ethernet.begin(mac, ip);
   server.begin();
 
@@ -58,12 +57,12 @@ void loop(){
            
           if(readString.indexOf("?ledon") > 0)
           {
-            digitalWrite(Pin, HIGH);
+            digitalWrite(LED, HIGH);
           }
           else {
             if(readString.indexOf("?ledoff") > 0)
             {
-              digitalWrite(Pin, LOW);
+              digitalWrite(LED, LOW);
             }
           }
           readString="";    
